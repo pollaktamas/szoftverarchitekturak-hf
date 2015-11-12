@@ -136,6 +136,10 @@ public class Animal {
 		this.owner = owner;
 	}
 	
+	public void removeOwner() {
+		this.owner = null;
+	}
+	
 	@Override
 	public String toString() {
 		return "Animal [id=" + id + ", species=" + species + ", breed=" + breed + ", sex=" + sex + ", age=" + age + ", color=" + color + ", volume=" + volume +
