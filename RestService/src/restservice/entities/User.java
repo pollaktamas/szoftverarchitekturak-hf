@@ -3,15 +3,27 @@ package restservice.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType
 public class User {
 	
 	@Id
+	@XmlElement
 	private int id;
+	@XmlElement
 	private String username;
+	@XmlElement
 	private String password;
+	@XmlElement
 	private String is_admin;
 	
 	public User () {	

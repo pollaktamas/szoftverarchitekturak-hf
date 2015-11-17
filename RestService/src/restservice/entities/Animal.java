@@ -3,25 +3,47 @@ package restservice.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType
 public class Animal {
 	
 	@Id
+	@XmlElement
 	private int id;
+	@XmlElement
 	private String species;
+	@XmlElement
 	private String breed;
+	@XmlElement
 	private String sex;
+	@XmlElement
 	private Integer age;
+	@XmlElement
 	private String color;
+	@XmlElement
 	private Integer volume;
+	@XmlElement
 	private Integer weight;
+	@XmlElement
 	private String favourite_meal;
+	@XmlElement
 	private String hobby;
+	@XmlElement
 	private String is_available;
+	@XmlElement
 	private String is_broken;
+	@XmlElement
 	private String picture;
+	@XmlElement
 	private Integer owner;
 
 	public int getId() {
