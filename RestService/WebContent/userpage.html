@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="userpageApp" ng-controller="userpageCtrl"> 
+
+<button ng-click="listAnimals()">List animals</button>
+
+<table>
+  <tr ng-hide="showAnimalTableHeader"> 
+  	<td>Species</td>
+  	<td>Breed</td>
+  	<td>Sex</td>
+  	<td>Age</td>
+  	<td>Color</td>
+  	<td>Volume</td>
+  	<td>Weight</td>
+  	<td>Favourite_meal</td>
+  	<td>Hobby</td>
+  	<td>Is_available</td>
+  	<td>Is_broken</td>
+  	<td>Picture</td>
+  </tr>
+  <tr ng-repeat="a in animals">
+    <td>{{ a.species }}</td>
+    <td>{{ a.breed }}</td>
+    <td>{{ a.sex }}</td>
+    <td>{{ a.age }}</td>
+    <td>{{ a.color }}</td>
+    <td>{{ a.volume }}</td>
+    <td>{{ a.weight }}</td>
+    <td>{{ a.favourite_meal }}</td>
+    <td>{{ a.hobby }}</td>
+    <td>{{ a.is_available }}</td>
+    <td>{{ a.is_broken }}</td>
+    <td>{{ a.picture }}</td>
+  </tr>
+</table>
+
+</div>
+
+<script src= "userpage.js"></script>
+
+</body>
+</html>
