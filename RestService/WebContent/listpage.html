@@ -6,9 +6,9 @@
 </head>
 <body>
 
-<div ng-app="userpageApp" ng-controller="userpageCtrl"> 
+<div ng-app="listpageApp" ng-controller="listpageCtrl"> 
 
-<button ng-click="listAnimals()">List animals</button>
+<button ng-click="listAnimals()">List animals</button> <button ng-click="logout()">Log Out</button>
 
 <table>
   <tr ng-hide="showAnimalTableHeader"> 
@@ -24,6 +24,7 @@
   	<td>Is_available</td>
   	<td>Is_broken</td>
   	<td>Picture</td>
+  	<td>Rent/Bring Back</td>
   </tr>
   <tr ng-repeat="a in animals">
     <td>{{ a.species }}</td>
@@ -38,12 +39,13 @@
     <td>{{ a.is_available }}</td>
     <td>{{ a.is_broken }}</td>
     <td>{{ a.picture }}</td>
+    <td><button ng-click="logout()" ng-disabled="isRentDisabled(a.is_available, a.is_broken, a.owner)">{{genButtonName(a.owner)}}</button></td>
   </tr>
 </table>
 
 </div>
 
-<script src= "userpage.js"></script>
+<script src = "listpage.js"></script>
 
 </body>
 </html>
