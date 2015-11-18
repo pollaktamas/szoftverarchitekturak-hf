@@ -12,7 +12,53 @@
 
 <div ng-app="listpageApp" ng-controller="listpageCtrl"> 
 
-<button ng-click="listAnimals()">List animals</button> <button ng-click="logout()">Log Out</button>
+<div class = "page-header" style="background-color: #e0e0d1">  
+   <div class="row">
+   <div class="col-md-offset-1 col-md-9">
+    <h1>
+      Animals 
+      <small>You can search, rent, and brick back them.</small>
+    </h1> 
+    
+    </div>
+    <div class="col-md-offset-1">
+        <button class="btn btn-danger" ng-click="logout()" style="margin-top: 25px">
+            <span class="glyphicon glyphicon-log-out"></span>  Log Out
+        </button>
+    </div>  
+    </div>   
+</div>
+
+<br>
+
+<center> 
+<form class="form-inline">
+  <div class="form-group">
+    <button class="btn btn-primary" ng-click="listAnimals()" style="margin-bottom: 5px; margin-right: 15px; width: 120px">List animals</button>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" ng-click="searchAnimals()" style="margin-bottom: 5px; margin-right: 15px; width: 120px">Search</button>
+  </div>
+  <div class="form-group">
+    <label for="inputSpecies">Species: </label>
+    <input type="text" class="form-control" id="inputSpecies" ng-model="species" placeholder="Species" style="margin-right: 15px"></input>
+  </div>
+  <div class="form-group">
+    <label for="inputBreed">Breed: </label>
+    <input type="text" class="form-control" id="inputBreed" ng-model="breed" placeholder="Breed" style="margin-right: 15px"></input>
+  </div>
+  <div class="form-group">
+    <label for="cbAvailable">Is Available: </label>
+    <input type="checkbox" id="cbAvailable" ng-model="cbIsAvailable" ng-true-value="'Y'" ng-false-value="'N'" style="margin-right: 15px"></input>
+  </div>
+  <div class="form-group">
+    <label for="cbBroken">Is broken: </label>
+    <input type="checkbox" id="cbBroken" ng-model="cbIsBroken" ng-true-value="'Y'" ng-false-value="'N'" style="margin-right: 15px"></input>
+  </div>
+</form>
+</center>
+
+<br>
 
 <table class="table table-striped table-hover">
   <thead ng-show="showAnimalTableHeader"> 
