@@ -98,6 +98,7 @@ public class DatabaseOperations {
 		Animal animal = entitymanager.find(Animal.class, animalId);
 		
 		if (animal.getIs_available().equals("Y") && (animal.getIs_broken().equals("N"))) {
+			animal.setIs_available("N");
 			animal.setOwner(userId);
 			successfulRent = true;
 		}
@@ -116,6 +117,7 @@ public class DatabaseOperations {
 		entitymanager.getTransaction().begin();
 
 		Animal animal = entitymanager.find(Animal.class, animalId);
+		animal.setIs_available("Y");
 		animal.removeOwner();
 
 		entitymanager.getTransaction().commit();	

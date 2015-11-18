@@ -8,13 +8,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import restservice.databaseoperations.DatabaseOperations;
-import restservice.entities.Animals;
+import restservice.entities.Animal;
 import restservice.entities.User;
 
 @Path("service")
 public class ServiceMethods {
 	
 	DatabaseOperations dbOps = new DatabaseOperations();
+	
+	@POST
+	@Path("login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUser(User user) {
+		return dbOps.login(user.getUsername(), user.getPassword());		
+	}
 	
 	@GET
 	@Path("animals")
@@ -27,10 +35,9 @@ public class ServiceMethods {
 	}
 	
 	@POST
-	@Path("login")
+	@Path("bringBack")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public User getUser(User user) {
-		return dbOps.login(user.getUsername(), user.getPassword());		
+	public void bringBackAnimal(Animal animal) {
+		dbOps.bringBackAnimal(animal.getId());	
 	}
 }

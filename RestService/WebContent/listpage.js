@@ -1,6 +1,6 @@
 angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $http) {
 	$scope.showAnimalTableHeader = false;
-    $scope.currentUser = localStorage.getItem('loggedInUserId');
+    $scope.currentUserId = localStorage.getItem('loggedInUserId');
     
 	$scope.showTableHeader = function() {
         $scope.showAnimalTableHeader = true;
@@ -8,12 +8,13 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
 	
     $scope.listAnimals = function() {
 		$http.get("http://localhost:8080/RestService/resources/service/animals").success( function(response) {
-			$scope.animals = response.animals;
+			$scope.showAnimalTableHeader = true;
+            $scope.animals = response.animals;
 		});
     };
    
     $scope.genButtonName = function(owner) {
-    	if (owner == $scope.currentUser) {
+    	if (owner == $scope.currentUserId) {
     		return "Bring back";
     	} else {
     		return "Rent";
@@ -21,15 +22,46 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     };
     
     $scope.isRentDisabled = function(is_available, is_broken, owner) {
-    	if ((owner != $scope.currentUser) && ((is_available == "N") || (is_broken == "Y"))) {
+    	if ((owner != $scope.currentUserId) && ((is_available == "N") || (is_broken == "Y"))) {
     		return true;
     	} else {
     		return false;
     	}
     };
-
+    
+    $scope.rentOrBringback = function(ownerId, animalId) {
+        if (ownerId == $scope.currentUserId) {
+        	$scope.bringBackAnimal(animalId);
+    	} else {
+    		$scope.rentAnimal(animalId);
+    	}
+    };
+    
+    $scope.determineButtonType = function(ownerId) {
+        if (ownerId == $scope.currentUserId) {
+        	return "btn-primary";
+    	} else {
+    		return "btn-success";
+    	}
+    };
+    
+    $scope.bringBackAnimal = function(animalId) {
+        var animal = { "id" : animalId}
+		$http.post("http://localhost:8080/RestService/resources/service/bringBack", JSON.stringify(animal)).success( function(response) {		
+			// List the animals again, because their informations changed
+            $scope.listAnimals();
+		});
+    };
+    
+    $scope.rentAnimal = function(animalId) {
+        var userAnimal = { "userId" : $scope.currentUserId, "animalId" : animalId }
+		$http.post("http://localhost:8080/RestService/resources/service/rent", JSON.stringify(userAnimal)).success( function(response) {		
+			// List the animals again, because their informations changed
+            $scope.listAnimals();
+		});
+    };
+       
     $scope.logout = function() {
-    	alert(currentUser.username);
     	window.location.href="loginpage.html";
     };
 	
