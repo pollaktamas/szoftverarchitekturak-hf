@@ -16,6 +16,7 @@ public class ServiceMethods {
 	
 	DatabaseOperations dbOps = new DatabaseOperations();
 	
+	// Ready.
 	@POST
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -24,6 +25,7 @@ public class ServiceMethods {
 		return dbOps.login(user.getUsername(), user.getPassword());		
 	}
 	
+	// Ready.
 	@GET
 	@Path("animals")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +36,7 @@ public class ServiceMethods {
 		return animals;
 	}
 	
+	// Ready.
 	@POST
 	@Path("bringBack")
 	@Consumes(MediaType.APPLICATION_JSON)

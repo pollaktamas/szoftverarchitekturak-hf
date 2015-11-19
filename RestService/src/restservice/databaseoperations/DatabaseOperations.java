@@ -31,6 +31,7 @@ public class DatabaseOperations {
 		closeFactoryAndManager();
 	}
 
+	// Ready.
 	/**
      * Client UC: login
      * 
@@ -51,6 +52,7 @@ public class DatabaseOperations {
 		return user;
 	}
 	
+	// Ready.
 	/**
 	 * Client UC: browse
 	 */
@@ -109,6 +111,7 @@ public class DatabaseOperations {
 		return successfulRent;
 	}
 	
+	// Ready.
 	/**
 	 * Client UC: bring back animal
 	 */
