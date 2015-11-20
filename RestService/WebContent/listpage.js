@@ -1,6 +1,10 @@
 angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $http) {
 	$scope.showAnimalTableHeader = false;
     $scope.currentUserId = localStorage.getItem('loggedInUserId');
+    $scope.species = "";
+    $scope.breed = "";
+    $scope.cbIsAvailable = "N";
+    $scope.cbIsBroken = "N";
     
 	$scope.showTableHeader = function() {
         $scope.showAnimalTableHeader = true;
@@ -12,6 +16,15 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
             $scope.animals = response.animals;
 		});
     };
+    
+    $scope.searchAnimals = function() {
+    	var search = { "species" : $scope.species, "breed" : $scope.breed, "is_available" : $scope.cbIsAvailable, "is_broken" : $scope.cbIsBroken};
+    	alert(JSON.stringify(search));
+		$http.post("http://localhost:8080/RestService/resources/service/search", JSON.stringify(search)).success( function(response) {			
+			$scope.showAnimalTableHeader = true;
+            $scope.animals = response.animals;
+		});
+    };  
    
     $scope.genButtonName = function(owner) {
     	if (owner == $scope.currentUserId) {
@@ -46,7 +59,7 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     };
     
     $scope.bringBackAnimal = function(animalId) {
-        var animal = { "id" : animalId}
+        var animal = { "id" : animalId }
 		$http.post("http://localhost:8080/RestService/resources/service/bringBack", JSON.stringify(animal)).success( function(response) {		
 			// List the animals again, because their informations changed
             $scope.listAnimals();

@@ -5,13 +5,68 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link href="xeditable.css" rel="stylesheet">
+	<script src="xeditable.js"></script>
 </head>
 <body>
 
 <div ng-app="managementpageApp" ng-controller="managementpageCtrl"> 
 
-This is the management page.
-<button ng-click="logout()">Log Out</button>
+<div class = "page-header" style="background-color: #e0e0d1">  
+   <div class="row">
+   <div class="col-md-offset-1 col-md-9">
+    <h1>
+      Management 
+      <small>Take care of you animals.</small>
+    </h1> 
+    
+    </div>
+    <div class="col-md-offset-1">
+        <button class="btn btn-danger" ng-click="logout()" style="margin-top: 25px">
+            <span class="glyphicon glyphicon-log-out"></span>  Log Out
+        </button>
+    </div>  
+    </div>   
+</div>
+
+<button class="btn btn-primary" ng-click="listAnimals()">List animals</button>
+
+<br></br>
+
+<table class="table table-striped table-hover">
+  <thead ng-show="showAnimalTableHeader"> 
+  	<th>Species</th>
+  	<th>Breed</th>
+  	<th>Sex</th>
+  	<th>Age</th>
+  	<th>Color</th>
+  	<th>Volume</th>
+  	<th>Weight</th>
+  	<th>Favourite_meal</th>
+  	<th>Hobby</th>
+  	<th>Is_available</th>
+  	<th>Is_broken</th>
+  	<th>Picture</th>
+  	<th>Remove</th>
+  	<th>Save changes</th>
+  </thead>
+  <tr ng-repeat="a in animals">
+    <td href="#" editable-text="a.species">{{ a.species }}</td>
+    <td href="#" editable-text="a.breed">{{ a.breed }}</td>
+    <td href="#" editable-text="a.sex">{{ a.sex }}</td>
+    <td href="#" editable-text="a.age">{{ a.age }}</td>
+    <td href="#" editable-text="a.color">{{ a.color }}</td>
+    <td href="#" editable-text="a.volume">{{ a.volume }}</td>
+    <td href="#" editable-text="a.weight">{{ a.weight }}</td>
+    <td href="#" editable-text="a.favourite_meal">{{ a.favourite_meal }}</td>
+    <td href="#" editable-text="a.hobby">{{ a.hobby }}</td>
+    <td href="#" editable-text="a.is_available">{{ a.is_available }}</td>
+    <td href="#" editable-text="a.is_broken">{{ a.is_broken }}</td>
+    <td href="#" editable-text="a.picture">{{ a.picture }}</td>
+    <td><button class="btn btn-default btn-danger" ng-click="deleteAnimal(a.id)">Delete</button></td>
+    <td><button class="btn btn-default btn-success" ng-click="updateAnimal(a)">Save</button></td>
+  </tr>
+</table>
 
 </div>
 
