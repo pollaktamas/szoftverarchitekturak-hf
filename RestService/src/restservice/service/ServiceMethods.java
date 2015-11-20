@@ -25,6 +25,21 @@ public class ServiceMethods {
 		return dbOps.login(user.getUsername(), user.getPassword());		
 	}
 	
+	@POST
+	@Path("register")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User regUser(User user) {
+		User u1 = dbOps.login(user.getUsername(), user.getPassword());
+		
+		if (u1 == null) {
+			dbOps.insertUser(user.getUsername(), user.getPassword(), "N");
+			return user;
+		}
+		
+		return null;		
+	}
+	
 	// Ready.
 	@GET
 	@Path("animals")
@@ -36,11 +51,49 @@ public class ServiceMethods {
 		return animals;
 	}
 	
+	@POST
+	@Path("rent")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void rent(UserAnimal ua) {	
+		dbOps.rentAnimal(ua.u_id, ua.a_id);
+	}
+	
 	// Ready.
 	@POST
 	@Path("bringBack")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void bringBackAnimal(Animal animal) {
 		dbOps.bringBackAnimal(animal.getId());	
+	}
+	
+	@POST
+	@Path("search")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Animals searchAnimal(Search so) {
+		Animals a = new Animals();
+		a.animals = dbOps.searchAnimals(so.species, so.breed, so.is_available, so.is_broken);
+		return a;
+	}
+	
+	@POST
+	@Path("insertAnimal")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void insertAnimal(Animal a) {
+		dbOps.insertAnimal(a.getSpecies(), a.getBreed(), a.getSex(), a.getAge(), a.getColor(), a.getVolume(), a.getWeight(), a.getFavourite_meal(), a.getHobby(), a.getIs_available(), a.getIs_broken(), a.getPicture());
+	}
+	
+	@POST
+	@Path("deleteAnimal")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteAnimal(Animal a) {
+		dbOps.deleteAnimal(a.getId());
+	}
+	
+	@POST
+	@Path("updateAnimal")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateAnimal(Animal a) {
+		dbOps.updateAnimal(a.getId(), a.getSpecies(), a.getBreed(), a.getSex(), a.getAge(), a.getColor(), a.getVolume(), a.getWeight(), a.getFavourite_meal(), a.getHobby(), a.getIs_available(), a.getIs_broken(), a.getPicture());
 	}
 }
