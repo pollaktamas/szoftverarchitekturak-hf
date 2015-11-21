@@ -11,6 +11,8 @@ angular.module('managementpageApp', ["xeditable"]).controller('managementpageCtr
     $scope.updateAnimal = function(animal) {
 		var a = { "id" : animal.id, "species" : animal.species, "breed" : animal.breed, "sex" : animal.sex, "age" : animal.age, "color" : animal.color, "volume" : animal.volume, "weight" : animal.weight, "favourite_meal" : animal.favourite_meal, "hobby" : animal.hobby, "is_available" : animal.is_available, "is_broken" : animal.is_broken, "picture" : animal.picture, "owner" : animal.owner }
 		$http.post("http://localhost:8080/RestService/resources/service/updateAnimal", JSON.stringify(a)).success( function(response) {		
+			alert("Animal updated");
+			
 			// List the animals again, because their informations changed
 	        $scope.listAnimals();
 		});
@@ -19,6 +21,8 @@ angular.module('managementpageApp', ["xeditable"]).controller('managementpageCtr
 	$scope.deleteAnimal = function(animalId) {
 		var animal = { "id" : animalId }
 		$http.post("http://localhost:8080/RestService/resources/service/deleteAnimal", JSON.stringify(animal)).success( function(response) {		
+			alert("Animal deleted");
+			
 			// List the animals again, because their informations changed
 	        $scope.listAnimals();
 		});

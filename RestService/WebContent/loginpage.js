@@ -24,16 +24,19 @@ angular.module('loginpageApp', []).controller('loginpageCtrl', function($scope, 
     };
     
     $scope.register = function() {
-    	var user = { "username": $scope.username, "password": $scope.password }
-		$http.post("http://localhost:8080/RestService/resources/service/register", JSON.stringify(user)).success( function(response) {
-					$scope.userReturned = response;
-					
-					if ($scope.userReturned.length == 0) {
-						alert("Username already in use, choose other username");
-					} else {
-						alert("Registration successful");
-					}
-		});
+    	if (($scope.username == null) || ($scope.password == null)) {
+			alert("You have to give a username and password!");
+		} else {	
+	    	var user = { "username": $scope.username, "password": $scope.password }
+			$http.post("http://localhost:8080/RestService/resources/service/register", JSON.stringify(user)).success( function(response) {
+						$scope.userReturned = response;
+						
+						if ($scope.userReturned.length == 0) {
+							alert("Username already in use, choose other username");
+						} else {
+							alert("Registration successful");
+						}
+			});
     };
-	
+    }
 });

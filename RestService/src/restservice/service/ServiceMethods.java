@@ -51,6 +51,7 @@ public class ServiceMethods {
 		return animals;
 	}
 	
+	// Ready.
 	@POST
 	@Path("rent")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -66,6 +67,7 @@ public class ServiceMethods {
 		dbOps.bringBackAnimal(animal.getId());	
 	}
 	
+	// Ready.
 	@POST
 	@Path("search")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -83,6 +85,7 @@ public class ServiceMethods {
 		dbOps.insertAnimal(a.getSpecies(), a.getBreed(), a.getSex(), a.getAge(), a.getColor(), a.getVolume(), a.getWeight(), a.getFavourite_meal(), a.getHobby(), a.getIs_available(), a.getIs_broken(), a.getPicture());
 	}
 	
+	// Ready.
 	@POST
 	@Path("deleteAnimal")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -90,6 +93,7 @@ public class ServiceMethods {
 		dbOps.deleteAnimal(a.getId());
 	}
 	
+	// Ready.
 	@POST
 	@Path("updateAnimal")
 	@Consumes(MediaType.APPLICATION_JSON)
