@@ -67,6 +67,7 @@ public class DatabaseOperations {
 		return animals;
 	}
 	
+	// Ready.
 	/**
 	 * Client UC: search
 	 * 
@@ -155,6 +156,7 @@ public class DatabaseOperations {
 		closeFactoryAndManager();
 	}
 	
+	// Ready.
 	/**
 	 * Administrator UC: update animal
 	 */

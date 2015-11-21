@@ -19,7 +19,6 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     
     $scope.searchAnimals = function() {
     	var search = { "species" : $scope.species, "breed" : $scope.breed, "is_available" : $scope.cbIsAvailable, "is_broken" : $scope.cbIsBroken};
-    	alert(JSON.stringify(search));
 		$http.post("http://localhost:8080/RestService/resources/service/search", JSON.stringify(search)).success( function(response) {			
 			$scope.showAnimalTableHeader = true;
             $scope.animals = response.animals;
@@ -67,7 +66,7 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     };
     
     $scope.rentAnimal = function(animalId) {
-        var userAnimal = { "userId" : $scope.currentUserId, "animalId" : animalId }
+        var userAnimal = { "u_id" : $scope.currentUserId, "a_id" : animalId }
 		$http.post("http://localhost:8080/RestService/resources/service/rent", JSON.stringify(userAnimal)).success( function(response) {		
 			// List the animals again, because their informations changed
             $scope.listAnimals();
