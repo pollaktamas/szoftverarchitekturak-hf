@@ -71,6 +71,7 @@ public class DatabaseOperations {
 		List<User> results = (List<User>) jpqlQuery.getResultList();
 		
 		if (!results.isEmpty()) {
+			closeFactoryAndManager();	
 			return true;
 		}
 		
@@ -103,12 +104,12 @@ public class DatabaseOperations {
 		entitymanager.getTransaction().begin();
 
 		List<Animal> animals = null;	
-		Query jpqlQuery = entitymanager.createQuery("Select e FROM Animal e WHERE e.species LIKE '%:species%' AND e.breed LIKE '%:breed%'"
-										+ " AND e.is_available LIKE '%:is_available%' AND e.is_broken LIKE '%:is_broken%'");
-		jpqlQuery.setParameter("species", species);
-		jpqlQuery.setParameter("breed", breed);
-		jpqlQuery.setParameter("is_available", is_available);
-		jpqlQuery.setParameter("is_broken", is_broken);
+		Query jpqlQuery = entitymanager.createQuery("Select e FROM Animal e WHERE e.species LIKE :species AND e.breed LIKE :breed"
+										+ " AND e.is_available LIKE :is_available AND e.is_broken LIKE :is_broken");
+		jpqlQuery.setParameter("species", "%" + species + "%");
+		jpqlQuery.setParameter("breed", "%" + breed + "%");
+		jpqlQuery.setParameter("is_available", "%" + is_available + "%");
+		jpqlQuery.setParameter("is_broken", "%" + is_broken + "%");
 		List<Animal> results = (List<Animal>) jpqlQuery.getResultList();
 		if (!results.isEmpty()) {
 			animals = results;
