@@ -30,9 +30,9 @@ public class ServiceMethods {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public User regUser(User user) {
-		User u1 = dbOps.login(user.getUsername(), user.getPassword());
+		boolean exists = dbOps.checkUserName(user.getUsername());
 		
-		if (u1 == null) {
+		if (!exists) {
 			dbOps.insertUser(user.getUsername(), user.getPassword(), "N");
 			return user;
 		}

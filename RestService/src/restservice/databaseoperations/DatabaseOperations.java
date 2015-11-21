@@ -43,13 +43,39 @@ public class DatabaseOperations {
 		entitymanager.getTransaction().begin();
 
 		User user = null;	
-		Query query = entitymanager.createQuery("Select e FROM User e WHERE e.username='" + username +"' AND e.password='" + password + "'");
-		if (!query.getResultList().isEmpty()) {
-			user = ((List<User>) query.getResultList()).get(0);
+		Query jpqlQuery = entitymanager.createQuery("Select e FROM User e WHERE e.username = :name AND e.password = :pw");
+		jpqlQuery.setParameter("name", username);
+		jpqlQuery.setParameter("pw", password);
+		List<User> results = (List<User>) jpqlQuery.getResultList();
+		
+		if (!results.isEmpty()) {
+			user = results.get(0);
 		}
 		
 		closeFactoryAndManager();	
 		return user;
+	}
+	
+	/**
+     * Client UC: checkUserName
+     * 
+     * Returns true if the given username exist in the database.
+     * Return false, if the given username does not exist in the database.
+     */
+	public boolean checkUserName(String username) {
+		createFactoryAndManager();
+		entitymanager.getTransaction().begin();
+
+		Query jpqlQuery = entitymanager.createQuery("Select e FROM User e WHERE e.username = :name");
+		jpqlQuery.setParameter("name", username);
+		List<User> results = (List<User>) jpqlQuery.getResultList();
+		
+		if (!results.isEmpty()) {
+			return true;
+		}
+		
+		closeFactoryAndManager();	
+		return false;
 	}
 	
 	// Ready.
@@ -77,10 +103,15 @@ public class DatabaseOperations {
 		entitymanager.getTransaction().begin();
 
 		List<Animal> animals = null;	
-		Query query = entitymanager.createQuery("Select e FROM Animal e WHERE e.species LIKE '%" + species +"%' AND e.breed LIKE '%" + breed +
-				"%' AND e.is_available LIKE '%" + is_available + "%' AND e.is_broken LIKE '%" + is_broken + "%'");
-		if (!query.getResultList().isEmpty()) {
-			animals = (List<Animal>) query.getResultList();
+		Query jpqlQuery = entitymanager.createQuery("Select e FROM Animal e WHERE e.species LIKE '%:species%' AND e.breed LIKE '%:breed%'"
+										+ " AND e.is_available LIKE '%:is_available%' AND e.is_broken LIKE '%:is_broken%'");
+		jpqlQuery.setParameter("species", species);
+		jpqlQuery.setParameter("breed", breed);
+		jpqlQuery.setParameter("is_available", is_available);
+		jpqlQuery.setParameter("is_broken", is_broken);
+		List<Animal> results = (List<Animal>) jpqlQuery.getResultList();
+		if (!results.isEmpty()) {
+			animals = results;
 		}
 	
 		closeFactoryAndManager();		
