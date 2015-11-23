@@ -1,4 +1,4 @@
-angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $http) {
+angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $http, $location, $anchorScroll) {
 	$scope.showAnimalTableHeader = false;
     $scope.currentUserId = localStorage.getItem('loggedInUserId');
     $scope.species = "";
@@ -71,6 +71,18 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
 			// List the animals again, because their informations changed
             $scope.listAnimals();
 		});
+    };
+    
+    $scope.changeImage = function(imageSrc) {
+        document.getElementById('animalImage').src= 'images/' + imageSrc;
+        $scope.imageName = name;
+        
+        $scope.gotoImage();
+    }
+    
+    $scope.gotoImage =  function () {
+    	$location.hash('animalImage');
+    	$anchorScroll();
     };
        
     $scope.logout = function() {

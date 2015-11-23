@@ -48,7 +48,7 @@
     <input type="text" class="form-control" id="inputBreed" ng-model="breed" placeholder="Breed" style="margin-right: 15px"></input>
   </div>
   <div class="form-group">
-    <label for="cbAvailable">Is Available: </label>
+    <label for="cbAvailable">Is available: </label>
     <input type="checkbox" id="cbAvailable" ng-model="cbIsAvailable" ng-true-value="'Y'" ng-false-value="'N'" style="margin-right: 15px"></input>
   </div>
   <div class="form-group">
@@ -88,10 +88,16 @@
     <td>{{ a.hobby }}</td>
     <td>{{ a.is_available }}</td>
     <td>{{ a.is_broken }}</td>
-    <td>{{ a.picture }}</td>
+    <td><button class="btn btn-default btn-warning" ng-click="changeImage(a.picture)">Show</button></td>
     <td><button class="btn btn-default {{determineButtonType(a.owner)}}" ng-click="rentOrBringback(a.owner, a.id)" ng-disabled="isRentDisabled(a.is_available, a.is_broken, a.owner)">{{genButtonName(a.owner)}}</button></td>
   </tr>
 </table>
+
+<br/>
+
+<div class="col-md-offset-3 col-md-6">    
+     <img id="animalImage" class="img-responsive img-thumbnail center-block" src=""></img>
+</div>
 
 </div>
 

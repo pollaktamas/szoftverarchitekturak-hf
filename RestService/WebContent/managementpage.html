@@ -29,7 +29,7 @@
     </div>   
 </div>
 
-<button class="btn btn-primary" ng-click="listAnimals()">List animals</button>
+<button class="btn btn-primary col-md-offset-1" ng-click="listAnimals()">List animals</button>
 
 <br></br>
 
@@ -42,10 +42,10 @@
   	<th>Color</th>
   	<th>Volume</th>
   	<th>Weight</th>
-  	<th>Favourite_meal</th>
+  	<th>Favourite meal</th>
   	<th>Hobby</th>
-  	<th>Is_available</th>
-  	<th>Is_broken</th>
+  	<th>Is available</th>
+  	<th>Is broken</th>
   	<th>Picture</th>
   	<th>Remove</th>
   	<th>Save changes</th>
@@ -67,6 +67,92 @@
     <td><button class="btn btn-default btn-success" ng-click="updateAnimal(a)">Save</button></td>
   </tr>
 </table>
+
+<h3 class="col-md-offset-1">Add an animal</h3>
+
+<br/>
+
+<div class="row"> 
+<div class="col-md-6"> 
+	<form class="form-horizontal col-md-offset-2" role="form">
+		<div class="form-group">
+			<label class="col-md-2 control-label">Species</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Species" class="form-control" ng-model="u_species" required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Breed</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Breed" class="form-control" ng-model="u_breed" required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Sex</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Sex" class="form-control" ng-model="u_sex" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Age</label>
+			<div class="col-md-8">
+				<input type="number" placeholder="Age" class="form-control" ng-model="u_age" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Color</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Color" class="form-control" ng-model="u_color" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Volume</label>
+			<div class="col-md-8">
+				<input type="number" placeholder="Volume" class="form-control" ng-model="u_volume" />
+			</div>
+		</div>
+	</form>
+</div>
+<div class= "col-md-5">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-md-3 control-label">Weight</label>
+			<div class="col-md-8">
+				<input type="number" placeholder="Weight" class="form-control" ng-model="u_weight" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">Favourite meal</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Favourite meal" class="form-control" ng-model="u_favourite_meal" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">Hobby</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Hobby" class="form-control" ng-model="u_hobby" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">Picture</label>
+			<div class="col-md-8">
+				<input type="text" placeholder="Picture" class="form-control" ng-model="u_picture" />
+			</div>
+		</div>
+		<div class="form-group">
+	    	<label class="col-md-3 control-label">Is available: </label>
+	    	<input type="checkbox" id="cbAvailable" ng-model="cbIsAvailable" ng-true-value="'Y'" ng-false-value="'N'"></input>
+	  	</div>
+	  	<div class="form-group">
+	    	<label class="col-md-3 control-label">Is broken: </label>
+	    	<input type="checkbox" id="cbBroken" ng-model="cbIsBroken" ng-true-value="'Y'" ng-false-value="'N'"></input>
+	  	</div>
+	</form>
+</div>
+
+</div>
+
+<button class="btn btn-primary col-md-offset-1" ng-click="insertAnimal()">Add new animal</button>
 
 </div>
 
