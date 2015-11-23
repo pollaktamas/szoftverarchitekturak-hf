@@ -68,7 +68,16 @@
   </tr>
 </table>
 
-<h3 class="col-md-offset-1">Add an animal</h3>
+<div class="row">
+	<div class="col-md-offset-3 col-md-6 alert alert-{{alertType}} alert-dismissible" role="alert" ng-show="alertBox">
+	  <button type="button" class="close" aria-label="Close" ng-click="showAlertBox(false)"><span aria-hidden="true">&times;</span></button>
+	  <strong>{{alertPre}}</strong> {{alertMessage}}
+	</div>
+</div>
+
+<div class="row">
+	<h3 class="col-md-offset-1">Add an animal</h3>
+</div>
 
 <br/>
 

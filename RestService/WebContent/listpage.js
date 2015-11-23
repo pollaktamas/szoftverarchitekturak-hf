@@ -20,8 +20,13 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     $scope.searchAnimals = function() {
     	var search = { "species" : $scope.species, "breed" : $scope.breed, "is_available" : $scope.cbIsAvailable, "is_broken" : $scope.cbIsBroken};
 		$http.post("http://localhost:8080/RestService/resources/service/search", JSON.stringify(search)).success( function(response) {			
-			$scope.showAnimalTableHeader = true;
-            $scope.animals = response.animals;
+			if (response.animals == null) {
+				$scope.showAnimalTableHeader = false;
+			} else {
+				$scope.showAnimalTableHeader = true;
+			}
+			
+			$scope.animals = response.animals;
 		});
     };  
    

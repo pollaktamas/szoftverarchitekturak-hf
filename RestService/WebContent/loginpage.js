@@ -1,17 +1,22 @@
 angular.module('loginpageApp', []).controller('loginpageCtrl', function($scope, $http) {
+	$scope.alertBox = false;
+	$scope.alertType = "danger";
+	$scope.alertPre = "ERROR!";
+	$scope.alertMessage = "You have to give a username and password!";
 	
 	$scope.login = function() {
-		if (($scope.username == null) || ($scope.password == null)) {
-			alert("You have to give a username and password!");
+		if (($scope.username == "") || ($scope.password == "") || ($scope.username == null) || ($scope.password == null)) {
+			$scope.alertMessage = "You have to give a username and password!";
+			$scope.showAlertBox(true, "danger", "ERROR!");
 		} else {	
 			var user = { "username": $scope.username, "password": $scope.password }
 			$http.post("http://localhost:8080/RestService/resources/service/login", JSON.stringify(user)).success( function(response) {
 						$scope.userReturned = response;
 						
 						if ($scope.userReturned.length == 0) {
-							alert("Invalid username or password");
+							$scope.alertMessage = "Invalid username or password!";
+							$scope.showAlertBox(true, "danger", "ERROR!");
 						} else {
-							alert("Login successful");
 							if ($scope.userReturned.is_admin == "Y") {
 								window.location.href="managementpage.html";
 							} else {
@@ -24,19 +29,28 @@ angular.module('loginpageApp', []).controller('loginpageCtrl', function($scope, 
     };
     
     $scope.register = function() {
-    	if (($scope.username == null) || ($scope.password == null)) {
-			alert("You have to give a username and password!");
+    	if (($scope.username == "") || ($scope.password == "") || ($scope.username == null) || ($scope.password == null)) {
+    		$scope.alertMessage = "You have to give a username and password!";
+    		$scope.showAlertBox(true, "danger", "ERROR!");
 		} else {	
 	    	var user = { "username": $scope.username, "password": $scope.password }
 			$http.post("http://localhost:8080/RestService/resources/service/register", JSON.stringify(user)).success( function(response) {
 						$scope.userReturned = response;
 						
 						if ($scope.userReturned.length == 0) {
-							alert("Username already in use, choose other username");
+							$scope.alertMessage = "Username already in use, choose other username!";
+							$scope.showAlertBox(true, "danger", "ERROR!");
 						} else {
-							alert("Registration successful");
+							$scope.alertMessage = "Registration successful!";
+							$scope.showAlertBox(true, "success", "");
 						}
 			});
-    };
+		};
+    }
+    
+    $scope.showAlertBox = function(set, type, pre) {
+    	$scope.alertBox = set;
+    	$scope.alertType = type;
+    	$scope.alertPre = pre;
     }
 });
