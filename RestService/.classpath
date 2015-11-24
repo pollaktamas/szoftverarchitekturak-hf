@@ -5,7 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/eclipselink.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 9.2 Runtime">
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 9.x Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
@@ -15,21 +15,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.ws.rs-api-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.activation_1.1.0.v201211130549.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.annotation_1.2.0.v201401042248.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.el_2.2.0.v201303151357.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.inject_1.0.0.v20091030.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.jws_2.0.0.v201005080400.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.mail_1.4.0.v201005080615.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.persistence_2.1.0.v201304241213.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.servlet.jsp_2.2.0.v201112011158.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.servlet_3.1.0.v201410161800.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.wsdl_1.5.1.v201012040544.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.wsdl_1.6.2.v201012040545.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.xml.stream_1.0.1.v201004272200.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.xml.ws_2.1.0.v200902101523.jar"/>
-	<classpathentry kind="lib" path="E:/Program Files/eclipse_EE/eclipse/plugins/javax.xml_1.3.4.v201005080400.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
