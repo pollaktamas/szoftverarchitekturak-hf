@@ -1,10 +1,14 @@
 angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $http, $location, $anchorScroll) {
 	$scope.showAnimalTableHeader = false;
-    $scope.currentUserId = localStorage.getItem('loggedInUserId');
+    $scope.currentUserId = sessionStorage.getItem('loggedInUserId');
     $scope.species = "";
     $scope.breed = "";
     $scope.cbIsAvailable = "N";
     $scope.cbIsBroken = "N";
+    
+    $scope.alertType = "success";
+	$scope.alertPre = "";
+	$scope.alertMessage = "";
     
 	$scope.showTableHeader = function() {
         $scope.showAnimalTableHeader = true;
@@ -21,6 +25,9 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     	var search = { "species" : $scope.species, "breed" : $scope.breed, "is_available" : $scope.cbIsAvailable, "is_broken" : $scope.cbIsBroken};
 		$http.post("http://localhost:8080/RestService/resources/service/search", JSON.stringify(search)).success( function(response) {			
 			if (response.animals == null) {
+				$scope.alertMessage = "No animal found based on the search criteria!";
+	    		$scope.showAlertBox(true, "info", "INFO!");
+				
 				$scope.showAnimalTableHeader = false;
 			} else {
 				$scope.showAnimalTableHeader = true;
@@ -65,6 +72,9 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     $scope.bringBackAnimal = function(animalId) {
         var animal = { "id" : animalId }
 		$http.post("http://localhost:8080/RestService/resources/service/bringBack", JSON.stringify(animal)).success( function(response) {		
+			$scope.alertMessage = "You brought back an animal!";
+    		$scope.showAlertBox(true, "success", "SUCCESS!");
+			
 			// List the animals again, because their informations changed
             $scope.listAnimals();
 		});
@@ -73,8 +83,18 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     $scope.rentAnimal = function(animalId) {
         var userAnimal = { "u_id" : $scope.currentUserId, "a_id" : animalId }
 		$http.post("http://localhost:8080/RestService/resources/service/rent", JSON.stringify(userAnimal)).success( function(response) {		
-			// List the animals again, because their informations changed
-            $scope.listAnimals();
+			if (response.success == true) {
+				$scope.alertMessage = "Successful rent!";
+	    		$scope.showAlertBox(true, "success", "SUCCESS!");
+				
+				// List the animals again, because their informations changed
+	            $scope.listAnimals();
+			} else {
+				$scope.alertMessage = "The requested animal is no longer available!";
+	    		$scope.showAlertBox(true, "danger", "ERROR!");
+	    		
+	            $scope.listAnimals();
+			}
 		});
     };
     
@@ -89,8 +109,15 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     	$location.hash('animalImage');
     	$anchorScroll();
     };
+    
+    $scope.showAlertBox = function(set, type, pre) {
+    	$scope.alertBox = set;
+    	$scope.alertType = type;
+    	$scope.alertPre = pre;
+    }
        
     $scope.logout = function() {
+    	sessionStorage.removeItem('loggedInUserId');
     	window.location.href="loginpage.html";
     };
 	

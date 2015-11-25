@@ -20,7 +20,7 @@ angular.module('loginpageApp', []).controller('loginpageCtrl', function($scope, 
 							if ($scope.userReturned.is_admin == "Y") {
 								window.location.href="managementpage.html";
 							} else {
-								localStorage.setItem('loggedInUserId', $scope.userReturned.id);
+								sessionStorage.setItem('loggedInUserId', $scope.userReturned.id);
 								window.location.href="listpage.html";
 							}
 						}

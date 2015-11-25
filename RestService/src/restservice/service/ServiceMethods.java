@@ -55,8 +55,11 @@ public class ServiceMethods {
 	@POST
 	@Path("rent")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void rent(UserAnimal ua) {	
-		dbOps.rentAnimal(ua.u_id, ua.a_id);
+	public RequestResult rent(UserAnimal ua) {	
+		RequestResult result = new RequestResult();
+		result.success = dbOps.rentAnimal(ua.u_id, ua.a_id);
+		
+		return result;
 	}
 	
 	// Ready.

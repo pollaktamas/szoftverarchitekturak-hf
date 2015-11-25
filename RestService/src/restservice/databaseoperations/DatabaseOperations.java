@@ -131,10 +131,12 @@ public class DatabaseOperations {
 		boolean successfulRent = false;
 		Animal animal = entitymanager.find(Animal.class, animalId);
 		
-		if (animal.getIs_available().equals("Y") && (animal.getIs_broken().equals("N"))) {
-			animal.setIs_available("N");
-			animal.setOwner(userId);
-			successfulRent = true;
+		if (animal != null) {
+			if (animal.getIs_available().equals("Y") && (animal.getIs_broken().equals("N"))) {
+				animal.setIs_available("N");
+				animal.setOwner(userId);
+				successfulRent = true;
+			}			
 		}
 
 		entitymanager.getTransaction().commit();	
