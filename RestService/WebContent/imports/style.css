@@ -1,6 +1,6 @@
 
 
 .jumbotron{
-     background: url('images/cats.jpg') no-repeat center center !important;
+     background: url('../images/cats.jpg') no-repeat center center !important;
      color: white;
 }

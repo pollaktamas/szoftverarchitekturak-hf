@@ -9,6 +9,8 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
     $scope.alertType = "success";
 	$scope.alertPre = "";
 	$scope.alertMessage = "";
+	
+	$scope.actualImageAnimalId = 0;
     
 	$scope.showTableHeader = function() {
         $scope.showAnimalTableHeader = true;
@@ -97,6 +99,24 @@ angular.module('listpageApp', []).controller('listpageCtrl', function($scope, $h
 			}
 		});
     };
+    
+    $scope.determineShowButtonType = function(animalId) {
+    	if (animalId == $scope.actualImageAnimalId) {
+    		return "primary";
+    	} else {
+    		return "warning";
+    	}
+    }
+    
+    $scope.clickOnShow = function(animal) {
+    	if (animal.id == $scope.actualImageAnimalId) {
+    		$scope.actualImageAnimalId = 0;
+    		document.getElementById('animalImage').src= "";
+    	} else {
+    		$scope.changeImage(animal.picture);
+    		$scope.actualImageAnimalId = animal.id;
+    	}
+    }
     
     $scope.changeImage = function(imageSrc) {
         document.getElementById('animalImage').src= 'images/' + imageSrc;

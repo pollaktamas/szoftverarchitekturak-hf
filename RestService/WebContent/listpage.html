@@ -94,7 +94,7 @@
     <td>{{ a.hobby }}</td>
     <td>{{ a.is_available }}</td>
     <td>{{ a.is_broken }}</td>
-    <td><button class="btn btn-default btn-warning" ng-click="changeImage(a.picture)">Show</button></td>
+    <td><button class="btn btn-default btn-{{determineShowButtonType(a.id)}}" ng-click="clickOnShow(a)">Show</button></td>
     <td><button class="btn btn-default {{determineButtonType(a.owner)}}" ng-click="rentOrBringback(a.owner, a.id)" ng-disabled="isRentDisabled(a.is_available, a.is_broken, a.owner)">{{genButtonName(a.owner)}}</button></td>
   </tr>
 </table>
